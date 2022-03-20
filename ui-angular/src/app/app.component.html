@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
 
-  <a class="navbar-brand" href="/">Amazon Cognito + AWS Amplify + Angular Demo</a>
+  <a class="navbar-brand" href="/">Cognito; Amplify; Angular</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
           aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -9,6 +9,7 @@
 
 
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
@@ -27,6 +28,7 @@
           <button class="nav-link dropdown-toggle btn btn-link" data-toggle="dropdown">{{model.user.name || model.user.email}}</button>
           <div class="dropdown-menu dropdown-menu-right">
             <button class="dropdown-item btn btn-warning" (click)="signOut()">Sign Out</button>
+            <button class="dropdown-item btn btn-warning" (click)="getCreds()" >Creds</button>
           </div>
         </div>
       </ng-container>
@@ -70,13 +72,12 @@
 
     <ng-container *ngIf="model.selectedPet && model.selectedPet.id">
       <button class="btn btn-danger m-1" (click)="deletePet()">Delete</button>
-
     </ng-container>
-
 
     <button class="btn btn-primary m-1" (click)="newPet()">Create New</button>
     <button class="btn btn-success m-1" (click)="this.loadAllPets()">Reload</button>
 
+    <button class="btn btn-success m-1" (click)="getCreds()" >Get CLI Credentials</button>
 
     <div class="card" *ngIf="model.selectedPet">
       <div class="card-body">
@@ -88,6 +89,16 @@
         </form>
       </div>
     </div>
+
+
+    <div class="card" *ngIf="model.credentials">
+      <div class="card-body">
+        export AWS_ACCESS_KEY_ID="{{model.credentials.accessKeyId}}"<br/>
+        export AWS_SECRET_ACCESS_KEY="{{model.credentials.secretAccessKey}}"<br/>
+        export AWS_SESSION_TOKEN="{{model.credentials.sessionToken}}"
+      </div>
+    </div>
+
     <div *ngIf="model.loading" class="d-flex justify-content-center">
       <div class="spinner-border" role="status">
         <span class="sr-only">Loading...</span>

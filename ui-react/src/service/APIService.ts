@@ -79,8 +79,12 @@ export class HttpAPIService implements APIService {
         }
     }
 
+    // https://aws-amplify.github.io/amplify-js/api/classes/awscredentials.html
+    // https://docs.amplify.aws/lib/client-configuration/configuring-amplify-categories/q/platform/js/#general-configuration
     private async getAuthorizationHeader() {
+
         const session = await this.auth.currentSession();
+
         // either id token or access token based on the API
         const idToken = session.getIdToken().getJwtToken();
         return {Authorization: idToken}

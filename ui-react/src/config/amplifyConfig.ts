@@ -13,6 +13,9 @@ export default {
     // OPTIONAL - Amazon Cognito User Pool ID
     userPoolId: autoGenConfig.cognitoUserPoolId,
 
+    // OPTIONAL - Amazon Cognito User Pool ID
+    identityPoolId: autoGenConfig.identityPoolId,
+
     // OPTIONAL - Amazon Cognito Web Client ID (26-char alphanumeric string)
     userPoolWebClientId: autoGenConfig.cognitoUserPoolAppClientId,
 

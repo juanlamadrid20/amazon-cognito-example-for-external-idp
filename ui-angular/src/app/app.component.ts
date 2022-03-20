@@ -22,6 +22,7 @@ interface Model {
   pets: Pet[];
   selectedPet?: Pet;
   loading: boolean;
+  credentials: any
 }
 
 // @ts-ignore
@@ -46,7 +47,8 @@ export class AppComponent implements OnInit {
     infoMessage: undefined,
     pets: [],
     selectedPet: undefined,
-    loading: false
+    loading: false,
+    credentials: undefined
   };
 
   constructor(private apiService: HttpAPIService) {
@@ -86,6 +88,22 @@ export class AppComponent implements OnInit {
       this.model.errorMessage = 'Failed to sign out. ' + e.message;
     }
   }
+
+  async getCreds() {
+    try {
+        
+      const credentials = await Auth.currentCredentials(); //Get AWS Credentials
+      this.model.credentials = credentials;
+
+      console.log(credentials);
+
+    } catch (e) {
+      
+    }
+  }
+
+
+  
 
 
   // ------------------------------------------------------------------------
